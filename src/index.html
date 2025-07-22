@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <title>NuvemShop</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Ícones do Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Estilos adicionais para o logo e botão noturno */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --primary-color: #007bff;
+      --secondary-color: #6c757d;
+      --success-color: #3f28a7;
+      --warning-color: #225c92;
+      --danger-color: #dc3545;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      --transition: 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
     .main-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      margin-bottom: 30px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      background-color: var(--light-color);
+      border-bottom: 1px solid #ccc;
     }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    
+
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
       font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dark-color);
-    }
-    
-    .logo-icon {
-      font-size: 2rem;
+      font-weight: bold;
       color: var(--primary-color);
+      gap: 10px;
     }
-    
+
+    .logo img {
+      height: 60px;
+    }
+
+    .banner-img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
     .dark-mode-toggle {
       position: relative;
       width: 60px;
@@ -53,21 +72,12 @@
       box-shadow: var(--box-shadow);
       transition: var(--transition);
     }
-    
+
     .dark-mode-toggle i {
       font-size: 14px;
-      color: var(--dark-color);
       transition: var(--transition);
     }
-    
-    .dark-mode-toggle .fa-sun {
-      color: #f39c12;
-    }
-    
-    .dark-mode-toggle .fa-moon {
-      color: #34495e;
-    }
-    
+
     .toggle-ball {
       position: absolute;
       left: 5px;
@@ -77,44 +87,63 @@
       border-radius: 50%;
       transition: transform 0.3s ease;
     }
-    
-    /* Estilo para dark mode */
+
     body.dark-mode {
       --bg-color: #1a1a1a;
       --text-color: #f0f0f0;
-      --primary-color: #4a6fa5;
-      --secondary-color: #3d5a80;
-      --success-color: #251b58;
-      --warning-color: #112482;
-      --danger-color: #e90a0a;
       --light-color: #2d2d2d;
-      --dark-color: #000000;
-      --border-color: #444;
-      background-color: var(--bg-color);
+      --dark-color: #797171;
     }
-    
-    body.dark-mode .logo {
-      color: var(--dark-color);
-    }
-    
-    body.dark-mode .dark-mode-toggle {
-      background-color: var(--dark-color);
-    }
-    
-    body.dark-mode .dark-mode-toggle .toggle-ball {
+
+    body.dark-mode .toggle-ball {
       transform: translateX(30px);
       background-color: var(--primary-color);
     }
+
+    .container {
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: var(--light-color);
+      border-top: 1px solid #ccc;
+    }
+
+    .actions-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--primary-color);
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .total {
+      font-size: 1.2rem;
+    }
+
   </style>
 </head>
-
 <body>
+
   <header class="main-header">
-    <div class="logo-container">
-      <div class="logo">
-        <i class="fas fa-shopping-bag logo-icon"></i>
-        <span>NuvemShop</span>
-      </div>
+    <div class="logo">
+      <img src="logo.png" alt="Logo da Loja">
+      <span>NuvemShop</span>
     </div>
     <button id="darkModeToggle" class="dark-mode-toggle">
       <i class="fas fa-moon"></i>
@@ -124,14 +153,16 @@
   </header>
 
   <main class="container">
-    <h1>Produtos</h1>
+    <img src="loja-banner.jpg" alt="Banner da loja" class="banner-img">
+         
+    <h1>Produtos NuvemShop</h1>
     <section class="actions-section">
-      <button class="btn btn-primary" onclick="window.location.href='crud.html'">
+      <button class="btn" onclick="window.location.href='crud.html'">
         <i class="fas fa-plus"></i> Cadastrar Produto
       </button>
       <p class="total"><strong>Total: R$ </strong><span id="total">0.00</span></p>
     </section>
-    
+
     <ul id="produtos"></ul>
 
     <h2><i class="fas fa-shopping-cart"></i> Meu Carrinho</h2>
@@ -144,44 +175,35 @@
   </footer>
 
   <script>
-    // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
-    
-    // Verificar preferência do usuário ou do sistema
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedMode = localStorage.getItem('darkMode');
-    
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     if (savedMode === 'enabled' || (!savedMode && prefersDark)) {
       body.classList.add('dark-mode');
     }
-    
-    // Alternar dark mode
+
     darkModeToggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const isDarkMode = body.classList.contains('dark-mode');
       localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-      
-      // Atualizar ícones
-      const moonIcon = darkModeToggle.querySelector('.fa-moon');
-      const sunIcon = darkModeToggle.querySelector('.fa-sun');
-      
-      if (isDarkMode) {
-        moonIcon.style.opacity = '0';
-        sunIcon.style.opacity = '1';
-      } else {
-        moonIcon.style.opacity = '1';
-        sunIcon.style.opacity = '0';
-      }
     });
-    
-    // Inicializar opacidade dos ícones
+
+    // Inicializa ícones
     const moonIcon = darkModeToggle.querySelector('.fa-moon');
     const sunIcon = darkModeToggle.querySelector('.fa-sun');
     moonIcon.style.opacity = body.classList.contains('dark-mode') ? '0' : '1';
     sunIcon.style.opacity = body.classList.contains('dark-mode') ? '1' : '0';
-  </script>
-  <script src="renderer.js"></script>
-</body>
 
+    darkModeToggle.addEventListener('click', () => {
+      const isDark = body.classList.contains('dark-mode');
+      moonIcon.style.opacity = isDark ? '0' : '1';
+      sunIcon.style.opacity = isDark ? '1' : '0';
+    });
+  </script>
+
+  <script src="renderer.js"></script>
+
+</body>
 </html>

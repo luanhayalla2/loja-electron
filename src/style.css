@@ -186,12 +186,7 @@ button:hover {
   border-radius: var(--border-radius);
 }
 
-#total {
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-#quantidade {
+#total, #quantidade {
   font-weight: bold;
   color: var(--primary-color);
 }
@@ -236,25 +231,25 @@ footer {
   #produtos {
     grid-template-columns: 1fr;
   }
-  
+
   section {
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
   }
-  
+
   .item-carrinho {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   .item-carrinho div {
     display: flex;
     gap: 5px;
     width: 100%;
   }
-  
+
   .item-carrinho button {
     flex-grow: 1;
   }
@@ -290,4 +285,24 @@ footer {
 @keyframes loading {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+/* Header / Logo / Banner */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 40px;
+  border-radius: 6px;
+}
+
+.banner-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 8px;
 }

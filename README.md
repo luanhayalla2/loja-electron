@@ -1,81 +1,32 @@
-🛍️ Loja Simples Desktop (Electron + Node + SQLite3)
-Este projeto é uma aplicação desktop simples de uma loja virtual, desenvolvida com Electron, Node.js e SQLite3.
+# 🛒 NuvemShop - Loja Desktop com Electron
 
-🚀 Funcionalidades
-Cadastro de Produtos (CRUD)
+Aplicação desktop desenvolvida com **Electron**, **Node.js**, **SQLite3** e **HTML/CSS/JS**, simulando o funcionamento de uma loja simples com:
 
-Carrinho de Compras
+- Cadastro de produtos (CRUD)
+- Carrinho de compras com total e quantidade
+- Interface leve e responsiva
+- Modo escuro (Dark Mode)
+- Banco de dados local persistente
 
-Adicionar produtos ao carrinho
+---
 
-Cálculo automático do total e quantidade de itens
+## 🚀 Tecnologias Utilizadas
 
-Interface simples e intuitiva
+- [Electron](https://www.electronjs.org/) — Criação da interface desktop com tecnologias web
+- [Node.js](https://nodejs.org/) — Backend da aplicação
+- [SQLite3](https://www.sqlite.org/) — Banco de dados local
+- HTML5 + CSS3 + JavaScript — Estrutura e interação da interface
+- Font Awesome — Ícones na interface
 
-🛠️ Tecnologias Utilizadas
-Electron – Criação da aplicação desktop
+---
 
-HTML, CSS e JavaScript – Interface e lógica da UI
+## 🖼️ Visual
 
-Node.js – Lógica do CRUD e integração com banco de dados
+- Logotipo personalizado (`logo.png`)
+- Banner na página inicial (`loja-banner.jpg`)
+- Botão para alternar entre tema claro e escuro
 
-SQLite3 – Banco de dados local
+---
 
-📂 Estrutura do Projeto
-
-
-![alt text](image.png)
-
-
-💾 Banco de Dados
-O banco SQLite é criado automaticamente na pasta do projeto com o nome:
-
-
-Tabela produtos:
-
-Campo	Tipo
-id	INTEGER (PK)
-nome	TEXT
-preco	REAL
-
-🖥️ Como Rodar o Projeto
-1️⃣ Pré-requisitos
-Node.js 20.x LTS
-(Baixar em: https://nodejs.org/en/download)
-
-⚠️ IMPORTANTE: Atualmente o Electron não suporta oficialmente o Node.js 22.
-
-
-2️⃣ Clone o projeto ou baixe o ZIP
-Se for clonar:
-
-
-git clone https://github.com/renaneliakim1/loja-electron.git
-cd loja-electron
-Se for por ZIP, basta extrair e abrir a pasta.
-
-3️⃣ Instale as dependências
-
-npm install
-npm install electron --save-dev  (Instala o Electron na versão mais recente disponível.)
-
-
-
-4️⃣ Rode a aplicação
-
-npm start
-
-⚠️ Possíveis Problemas
-Se ocorrer erro com o Electron:
-
-
-npm cache clean --force
-rmdir /s /q node_modules
-del package-lock.json
-npm install
-Execute novamente como Administrador se for Windows.
-
-📝 Licença
-MIT
-
+## 📁 Estrutura de Pastas
 
