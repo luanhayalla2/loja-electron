@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>NuvemShop</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Ícones do Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Estilos adicionais para o logo e botão noturno */
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-color);
+    }
+    
+    .logo-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+    
+    .dark-mode-toggle {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      border-radius: 30px;
+      background-color: var(--light-color);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5px;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+    
+    .dark-mode-toggle i {
+      font-size: 14px;
+      color: var(--dark-color);
+      transition: var(--transition);
+    }
+    
+    .dark-mode-toggle .fa-sun {
+      color: #f39c12;
+    }
+    
+    .dark-mode-toggle .fa-moon {
+      color: #34495e;
+    }
+    
+    .toggle-ball {
+      position: absolute;
+      left: 5px;
+      width: 22px;
+      height: 22px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+    
+    /* Estilo para dark mode */
+    body.dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --primary-color: #4a6fa5;
+      --secondary-color: #3d5a80;
+      --success-color: #251b58;
+      --warning-color: #112482;
+      --danger-color: #e90a0a;
+      --light-color: #2d2d2d;
+      --dark-color: #000000;
+      --border-color: #444;
+      background-color: var(--bg-color);
+    }
+    
+    body.dark-mode .logo {
+      color: var(--dark-color);
+    }
+    
+    body.dark-mode .dark-mode-toggle {
+      background-color: var(--dark-color);
+    }
+    
+    body.dark-mode .dark-mode-toggle .toggle-ball {
+      transform: translateX(30px);
+      background-color: var(--primary-color);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="logo-container">
+      <div class="logo">
+        <i class="fas fa-shopping-bag logo-icon"></i>
+        <span>NuvemShop</span>
+      </div>
+    </div>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+      <span class="toggle-ball"></span>
+    </button>
+  </header>
+
+  <main class="container">
+    <h1>Produtos</h1>
+    <section class="actions-section">
+      <button class="btn btn-primary" onclick="window.location.href='crud.html'">
+        <i class="fas fa-plus"></i> Cadastrar Produto
+      </button>
+      <p class="total"><strong>Total: R$ </strong><span id="total">0.00</span></p>
+    </section>
+    
+    <ul id="produtos"></ul>
+
+    <h2><i class="fas fa-shopping-cart"></i> Meu Carrinho</h2>
+    <p><span id="quantidade">0</span> item(s)</p>
+    <ul id="carrinho"></ul>
+  </main>
+
+  <footer>
+    <p>Electron JS - Sistemas de vendas</p>
+  </footer>
+
+  <script>
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    
+    // Verificar preferência do usuário ou do sistema
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedMode = localStorage.getItem('darkMode');
+    
+    if (savedMode === 'enabled' || (!savedMode && prefersDark)) {
+      body.classList.add('dark-mode');
+    }
+    
+    // Alternar dark mode
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDarkMode = body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+      
+      // Atualizar ícones
+      const moonIcon = darkModeToggle.querySelector('.fa-moon');
+      const sunIcon = darkModeToggle.querySelector('.fa-sun');
+      
+      if (isDarkMode) {
+        moonIcon.style.opacity = '0';
+        sunIcon.style.opacity = '1';
+      } else {
+        moonIcon.style.opacity = '1';
+        sunIcon.style.opacity = '0';
+      }
+    });
+    
+    // Inicializar opacidade dos ícones
+    const moonIcon = darkModeToggle.querySelector('.fa-moon');
+    const sunIcon = darkModeToggle.querySelector('.fa-sun');
+    moonIcon.style.opacity = body.classList.contains('dark-mode') ? '0' : '1';
+    sunIcon.style.opacity = body.classList.contains('dark-mode') ? '1' : '0';
+  </script>
+  <script src="renderer.js"></script>
+</body>
+
+</html>
